@@ -45,17 +45,17 @@ namespace SteerLib
 		z_range_max = MIN(z+OBSTACLE_CLEARANCE, gSpatialDatabase->getNumCellsZ());
 
 
-		//for (int i = x_range_min; i<=x_range_max; i+=GRID_STEP)
-		//{
-		//	for (int j = z_range_min; j<=z_range_max; j+=GRID_STEP)
-		//	{
-		//		int index = gSpatialDatabase->getCellIndexFromGridCoords( i, j );
-		//		traversal_cost += gSpatialDatabase->getTraversalCost ( index );
-		//		
-		//	}
-		//}
+		for (int i = x_range_min; i<=x_range_max; i+=GRID_STEP)
+		{
+			for (int j = z_range_min; j<=z_range_max; j+=GRID_STEP)
+			{
+				int index = gSpatialDatabase->getCellIndexFromGridCoords( i, j );
+				traversal_cost += gSpatialDatabase->getTraversalCost ( index );
+				
+			}
+		}
 
-		traversal_cost = gSpatialDatabase->getTraversalCost(current_id);
+		//traversal_cost = gSpatialDatabase->getTraversalCost(current_id);
 		if ( traversal_cost > COLLISION_COST ) 
 			return false;
 		return true;
